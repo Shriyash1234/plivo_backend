@@ -35,6 +35,8 @@ backend/
 
 ## Setup
 1. Copy `.env.example` to `.env` and update values.
+   - `MONGO_URI` – connection string for MongoDB
+   - `CLIENT_URL` – comma-separated list of frontend origins allowed by CORS (e.g. `http://localhost:3000`)
 2. Install dependencies:
    ```bash
    npm install
@@ -72,7 +74,8 @@ The API listens on `PORT` (default 5000). `/health` returns a simple heartbeat.
 - Resolution timestamps recorded.
 
 ### Public Status Page
-- `/api/public/status?organizationId=<id>` (or slug) exposes:
+- `/api/public/organizations` returns lightweight `{ id, name, slug }` records so frontends can show a directory of status pages.
+- `/api/public/status?organizationId=<id-or-slug>` exposes:
   - organization metadata
   - overall status (derived from service health)
   - service list
