@@ -8,3 +8,12 @@ exports.getStatusPage = async (req, res, next) => {
     next(error);
   }
 };
+
+exports.listOrganizations = async (req, res, next) => {
+  try {
+    const organizations = await publicService.listPublicOrganizations();
+    res.json({ organizations });
+  } catch (error) {
+    next(error);
+  }
+};

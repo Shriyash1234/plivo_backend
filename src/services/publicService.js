@@ -73,6 +73,19 @@ const buildTimeline = (services, incidents) => {
     .slice(0, 25);
 };
 
+exports.listPublicOrganizations = async () => {
+  const organizations = await Organization.find()
+    .select('name slug')
+    .sort({ name: 1 })
+    .lean();
+
+  return organizations.map((organization) => ({
+    id: organization._id.toString(),
+    name: organization.name,
+    slug: organization.slug,
+  }));
+};
+
 exports.getStatusSnapshot = async (identifier) => {
   let organizationQuery = {};
 
