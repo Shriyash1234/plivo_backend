@@ -1,12 +1,12 @@
-const http = require('http');
-const dotenv = require('dotenv');
-const app = require('./src/app');
-const connectDB = require('./src/config/db');
-const { initSocket } = require('./src/utils/socket');
+const http = require("http");
+const dotenv = require("dotenv");
+const app = require("./src/app");
+const connectDB = require("./src/config/db");
+const { initSocket } = require("./src/utils/socket");
 
 dotenv.config();
 
-const PORT = process.env.PORT || 5000;
+const PORT = process.env.PORT || 4500;
 
 const startServer = async () => {
   try {
@@ -20,7 +20,7 @@ const startServer = async () => {
     });
   } catch (err) {
     // eslint-disable-next-line no-console
-    console.error('Failed to start server', err);
+    console.error("Failed to start server", err);
     process.exit(1);
   }
 };

@@ -9,9 +9,14 @@ const { errorHandler } = require('./middleware/errorHandler');
 const app = express();
 
 app.use(helmet());
+const allowedOrigins = (process.env.CLIENT_URL || '')
+  .split(',')
+  .map((origin) => origin.trim())
+  .filter(Boolean);
+
 app.use(
   cors({
-    origin: (process.env.CLIENT_URL || '').split(',').filter(Boolean) || '*',
+    origin: allowedOrigins.length ? allowedOrigins : true,
     credentials: true,
   }),
 );
